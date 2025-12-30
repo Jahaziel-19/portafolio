@@ -1,0 +1,57 @@
+---
+import { Database, Server, Code, Terminal } from 'lucide-react';
+
+const skills = [
+  {
+    category: "Backend Development",
+    icon: Server,
+    items: ["Django", "Flask", "FastAPI", "RESTful APIs"]
+  },
+  {
+    category: "Lenguajes & Core",
+    icon: Code,
+    items: ["Python 3+", "JavaScript (ES6+)", "TypeScript", "HTML5/CSS3"]
+  },
+  {
+    category: "Bases de Datos",
+    icon: Database,
+    items: ["PostgreSQL", "MySQL", "SQLite", "SQLAlchemy", "Django ORM"]
+  },
+  {
+    category: "Herramientas & DevOps",
+    icon: Terminal,
+    items: ["Git/GitHub", "Linux", "VS Code", "Postman"]
+  }
+];
+---
+
+<section id="skills" class="py-20 bg-slate-800/50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Habilidades Técnicas</h2>
+      <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+      <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
+        Mi stack tecnológico principal se centra en el ecosistema Python, complementado con herramientas modernas de desarrollo web.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {skills.map((skill) => (
+        <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 hover:border-primary/50 transition-colors group">
+          <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+            <skill.icon className="w-6 h-6 text-primary" />
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-white">{skill.category}</h3>
+          <ul class="space-y-2">
+            {skill.items.map((item) => (
+              <li class="flex items-center text-slate-400">
+                <span class="w-1.5 h-1.5 bg-secondary rounded-full mr-2"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
