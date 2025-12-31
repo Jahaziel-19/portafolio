@@ -1,16 +1,66 @@
 ---
-const projects = [
+import ProjectCard from './ProjectCard';
+import type { ImageMetadata } from 'astro';
+
+// Import all images from the projects folder
+const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/projects/**/*.{jpeg,jpg,png,gif,webp,JPEG,JPG,PNG,GIF,WEBP}');
+
+// Helper function to get images for a specific project folder
+async function getProjectImages(folderName: string) {
+  const images: string[] = [];
   
+  for (const path in allImages) {
+    if (path.includes(`/projects/${folderName}/`)) {
+      const imageModule = await allImages[path]();
+      images.push(imageModule.default.src);
+    }
+  }
+  
+  return images;
+}
+
+const projectsData = [
   {
-    title: "E-commerce escolar",
-    description: "Backend robusto construido con Flask y SQLAlchemy.",
-    tags: ["Flask", "SQLAlchemy"],
-    image: "/placeholder-project-2.jpg", // Placeholder
-    github: "#",
+    id: "Mercadito",
+    title: "Sistema ecommerce escolar",
+    imageFolder: "ecommerce-api",
+    description: "Backend robusto construido con Flask y SQLAlchemy. Implementa autenticación, seguimiento y notificacion de pedidos con Flask-Mail.",
+    tags: ["Flask", "SQLAlchemy", "Flask-Mail"],
+    github: "https://github.com/Jahaziel-19/Mercadito",
+    demo: "#",
+    video: "https://drive.google.com/file/d/1UodBlDYI0uUw8r58qPB7PPYVKXeeBt39/view?usp=sharing",
+  },
+  {
+    id: "contactos",
+    title: "Aplicación de contactos",
+    imageFolder: "contactos",
+    description: "CRUD de contactos. Utiliza APIs REST para servir la información al frontend, autenticación JWT y exportación de contactos en CSV.",
+    tags: ["React", "Flask", "Mongo DB"],
+    github: "https://github.com/Jahaziel-19/contactos",
     demo: "#"
   },
-
+  {
+    id: "sistema-gestion",
+    title: "SIGES - Sistema Integral de Gestión Escolar y Servicios",
+    imageFolder: "sistema-gestion",
+    description: "Incluye módulos de generación de trámites, registro de alumnos y procesos académicos como admisión. Desarrollado con arquitectura MVT de Django",
+    tags: ["Django", "PostgreSQL", "Bootstrap"],
+    video:"https://drive.google.com/file/d/1NqgUXbURrRN4wd51AKkIrxIHf6Sy_X1Q/view?usp=sharing",
+    github: "",
+    demo: "#"
+  },
 ];
+
+// Enrich projects with images
+const projects = await Promise.all(projectsData.map(async (project) => {
+  const images = await getProjectImages(project.imageFolder);
+  // Fallback if no images found in folder
+  if (images.length === 0) {
+      // Use placeholder or keep empty to show "No images"
+      // For now, let's keep it empty so user knows they need to add images
+  }
+  return { ...project, images };
+}));
 ---
 
 <section id="projects" class="py-20">
@@ -22,38 +72,11 @@ const projects = [
         Una selección de mis trabajos más recientes aplicando tecnologías backend y mejores prácticas de desarrollo.
       </p>
     </div>
-  
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects.map((project) => (
-        <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-primary/5 group">
-          <div class="h-48 bg-slate-800 relative overflow-hidden group-hover:opacity-90 transition-opacity">
-            {/* Image Placeholder */}
-            <div class="absolute inset-0 flex items-center justify-center text-slate-600 font-bold bg-slate-800">
-               {project.title} Preview
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-white mb-2">{project.title}</h3>
-            <p class="text-slate-400 text-sm mb-4 h-20 overflow-hidden">{project.description}</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              {project.tags.map((tag) => (
-                <span class="px-2 py-1 text-xs font-medium bg-slate-800 text-primary rounded border border-slate-700">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div class="flex gap-4">
-              <a href={project.github} class="flex-1 py-2 text-center text-sm font-medium border border-slate-700 rounded-lg hover:bg-slate-800 text-white transition-colors">
-                Código
-              </a>
-              <a href={project.demo} class="flex-1 py-2 text-center text-sm font-medium bg-primary/10 text-primary border border-primary/20 rounded-lg hover:bg-primary/20 transition-colors">
-                Demo
-              </a>
-            </div>
-          </div>
-        </div>
+        <ProjectCard client:visible project={project} />
       ))}
     </div>
-  
   </div>
 </section>
