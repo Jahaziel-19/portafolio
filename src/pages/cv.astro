@@ -1,0 +1,160 @@
+---
+import '@fontsource/inter';
+import { Mail, MapPin, Phone, Github, Linkedin, Globe, Printer, ArrowLeft } from 'lucide-react';
+
+const personalInfo = {
+  name: "Jesús Jahaziel Sánchez Vázquez",
+  role: "Python Developer",
+  email: "jahazielvazquez19@gmail.com",
+  phone: "+52 276 101 65 09",
+  location: "México",
+  linkedin: "linkedin.com/in/jahaziel-vazquez",
+  github: "github.com/Jahaziel-19",
+  website: "jahaziel.is-a.dev"
+};
+
+const summary = "Especializado en desarrollo backend con Django, Flask y PostgreSQL. Creo soluciones robustas y escalables para la web moderna, con experiencia en la construcción de APIs RESTful y aplicaciones full-stack.";
+
+const skills = [
+  { category: "Backend", items: ["Django", "Flask", "FastAPI", "RESTful APIs", "Python 3+"] },
+  { category: "Frontend", items: ["JavaScript (ES6+)", "TypeScript", "React", "HTML5", "CSS3", "Tailwind CSS"] },
+  { category: "Base de Datos", items: ["PostgreSQL", "MySQL", "SQLite", "SQLAlchemy", "Django ORM", "Mongo DB"] },
+  { category: "Herramientas", items: ["Git", "GitHub", "Linux", "VS Code", "Postman", "Docker"] },
+];
+
+const projects = [
+  {
+    title: "Mercadito - Sistema Ecommerce Escolar",
+    role: "Full Stack Developer",
+    description: "Backend robusto para plataforma de comercio electrónico escolar. Implementación de autenticación segura, gestión de inventario, seguimiento de pedidos y sistema de notificaciones por correo.",
+    tech: ["Flask", "SQLAlchemy", "Flask-Mail", "Python"]
+  },
+  {
+    title: "SIGES - Sistema Integral de Gestión Escolar",
+    role: "Full Stack Developer",
+    description: "Sistema completo para la gestión de trámites, registro de alumnos y procesos académicos como admisión. Desarrollado con arquitectura MVT.",
+    tech: ["Django", "PostgreSQL", "Bootstrap", "JavaScript"]
+  },
+  {
+    title: "Aplicación de Contactos",
+    role: "Backend Developer",
+    description: "Aplicación CRUD para gestión de contactos con autenticación segura y funcionalidades de exportación de datos.",
+    tech: ["React", "Flask", "Mongo DB", "JWT"]
+  }
+];
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>CV - {personalInfo.name}</title>
+    <style>
+        @media print {
+            @page { margin: 0; size: auto; }
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white; }
+            .no-print { display: none !important; }
+            a { text-decoration: none; color: black; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-slate-800 font-sans p-0 m-0 min-h-screen flex flex-col items-center">
+
+    <!-- Toolbar -->
+    <div class="no-print fixed top-0 left-0 w-full bg-slate-900 text-white p-4 shadow-lg z-50 flex justify-between items-center">
+        <a href="/" class="flex items-center gap-2 hover:text-primary transition-colors text-sm font-medium">
+            <ArrowLeft size={18} />
+            Volver al Portafolio
+        </a>
+        <button onclick="window.print()" class="flex items-center gap-2 bg-primary hover:bg-blue-600 px-4 py-2 rounded-lg transition-colors font-medium text-sm shadow-lg shadow-blue-500/20">
+            <Printer size={18} />
+            Imprimir / Guardar PDF
+        </button>
+    </div>
+
+    <!-- CV Page (A4 sized approximation) -->
+    <main class="bg-white w-full max-w-[210mm] min-h-[297mm] p-[15mm] md:p-[20mm] my-0 md:my-8 shadow-xl md:rounded-sm mx-auto relative mt-20 md:mt-24">
+        
+        <!-- Header -->
+        <header class="border-b-2 border-slate-100 pb-8 mb-8">
+            <h1 class="text-4xl font-bold text-slate-900 uppercase tracking-tight mb-2">{personalInfo.name}</h1>
+            <h2 class="text-xl text-primary font-medium mb-6">{personalInfo.role}</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-8 text-sm text-slate-600">
+                <div class="flex items-center gap-2">
+                    <Mail size={16} className="text-slate-400" />
+                    <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <Phone size={16} className="text-slate-400" />
+                    <span>{personalInfo.phone}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <MapPin size={16} className="text-slate-400" />
+                    <span>{personalInfo.location}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <Globe size={16} className="text-slate-400" />
+                    <a href={`https://${personalInfo.website}`} target="_blank">{personalInfo.website}</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <Linkedin size={16} className="text-slate-400" />
+                    <a href={`https://${personalInfo.linkedin}`} target="_blank">{personalInfo.linkedin}</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <Github size={16} className="text-slate-400" />
+                    <a href={`https://${personalInfo.github}`} target="_blank">{personalInfo.github}</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Summary -->
+        <section class="mb-8">
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-3">Perfil Profesional</h3>
+            <p class="text-slate-700 leading-relaxed text-justify">
+                {summary}
+            </p>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-8">
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-4">Habilidades Técnicas</h3>
+            <div class="grid grid-cols-2 gap-4">
+                {skills.map(group => (
+                    <div>
+                        <h4 class="font-semibold text-slate-800 mb-1 text-sm">{group.category}</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            {group.items.join(", ")}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- Experience / Projects -->
+        <section class="mb-8">
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-6">Proyectos Destacados</h3>
+            
+            <div class="space-y-6">
+                {projects.map(project => (
+                    <div>
+                        <div class="flex justify-between items-baseline mb-1">
+                            <h4 class="font-bold text-slate-900 text-lg">{project.title}</h4>
+                            <span class="text-xs font-medium text-white bg-slate-800 px-2 py-0.5 rounded">{project.role}</span>
+                        </div>
+                        <p class="text-slate-700 text-sm mb-2 text-justify">{project.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                            {project.tech.map(t => (
+                                <span class="text-xs text-slate-500 border border-slate-200 px-1.5 py-0.5 rounded bg-slate-50">
+                                    {t}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    </main>
+</body>
+</html>
