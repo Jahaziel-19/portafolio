@@ -1,6 +1,11 @@
 ---
 import ProjectCard from './ProjectCard';
 import type { ImageMetadata } from 'astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { projects as projectsData } from '../data/projects';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // Import all images from the projects folder
 const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/projects/**/*.{jpeg,jpg,png,gif,webp,JPEG,JPG,PNG,GIF,WEBP}');
@@ -19,40 +24,8 @@ async function getProjectImages(folderName: string) {
   return images;
 }
 
-const projectsData = [
-  {
-    id: "Mercadito",
-    title: "Sistema ecommerce escolar",
-    imageFolder: "ecommerce-api",
-    description: "Backend robusto construido con Flask y SQLAlchemy. Implementa autenticación, seguimiento y notificacion de pedidos con Flask-Mail.",
-    tags: ["Flask", "SQLAlchemy", "Flask-Mail"],
-    github: "https://github.com/Jahaziel-19/Mercadito",
-    demo: "#",
-    video: "https://drive.google.com/file/d/1UodBlDYI0uUw8r58qPB7PPYVKXeeBt39/view?usp=sharing",
-  },
-  {
-    id: "contactos",
-    title: "Aplicación de contactos",
-    imageFolder: "contactos",
-    description: "CRUD de contactos. Utiliza APIs REST para servir la información al frontend, autenticación JWT y exportación de contactos en CSV.",
-    tags: ["React", "Flask", "Mongo DB"],
-    github: "https://github.com/Jahaziel-19/contactos",
-    demo: "#"
-  },
-  {
-    id: "sistema-gestion",
-    title: "SIGES - Sistema Integral de Gestión Escolar y Servicios",
-    imageFolder: "sistema-gestion",
-    description: "Incluye módulos de generación de trámites, registro de alumnos y procesos académicos como admisión. Desarrollado con arquitectura MVT de Django",
-    tags: ["Django", "PostgreSQL", "Bootstrap"],
-    video:"https://drive.google.com/file/d/1NqgUXbURrRN4wd51AKkIrxIHf6Sy_X1Q/view?usp=sharing",
-    github: "",
-    demo: "#"
-  },
-];
-
 // Enrich projects with images
-const projects = await Promise.all(projectsData.map(async (project) => {
+const projects = await Promise.all(projectsData[lang].map(async (project) => {
   const images = await getProjectImages(project.imageFolder);
   // Fallback if no images found in folder
   if (images.length === 0) {
@@ -66,10 +39,10 @@ const projects = await Promise.all(projectsData.map(async (project) => {
 <section id="projects" class="py-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Proyectos Destacados</h2>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{t('projects.title')}</h2>
       <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
       <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
-        Una selección de mis trabajos más recientes aplicando tecnologías backend y mejores prácticas de desarrollo.
+        {t('projects.description')}
       </p>
     </div>
 

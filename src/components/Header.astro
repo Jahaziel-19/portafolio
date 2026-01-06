@@ -1,10 +1,19 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { Globe } from 'lucide-react';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const navItems = [
-  { name: 'Inicio', href: '#home' },
-  { name: 'Habilidades', href: '#skills' },
-  { name: 'Proyectos', href: '#projects' },
-  { name: 'Contacto', href: '#contact' },
+  { name: t('nav.home'), href: '#home' },
+  { name: t('nav.skills'), href: '#skills' },
+  { name: t('nav.projects'), href: '#projects' },
+  { name: t('nav.contact'), href: '#contact' },
 ];
+
+const nextLangPath = lang === 'en' ? '/es' : '/';
+const nextLangLabel = lang === 'en' ? 'ES' : 'EN';
 ---
 
 <header class="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
@@ -14,7 +23,7 @@ const navItems = [
         <a href="#" class="text-xl font-bold text-primary tracking-tighter">J<span class="text-white">V</span></a>
       </div>
       <nav class="hidden md:block">
-        <ul class="flex space-x-8">
+        <ul class="flex items-center space-x-8">
           {navItems.map((item) => (
             <li>
               <a 
@@ -25,14 +34,66 @@ const navItems = [
               </a>
             </li>
           ))}
+          <li>
+            <a href={nextLangPath} class="flex items-center gap-1 text-sm font-medium text-slate-300 hover:text-white hover:text-primary transition-colors border border-slate-700 rounded-md px-2 py-1">
+              <Globe size={14} />
+              {nextLangLabel}
+            </a>
+          </li>
         </ul>
       </nav>
       <div class="md:hidden">
-        {/* Mobile menu button placeholder - can be implemented with React or vanilla JS if needed */}
-        <button class="text-slate-300 hover:text-white">
+        <button id="mobile-menu-btn" class="text-slate-300 hover:text-white p-2">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
         </button>
       </div>
     </div>
   </div>
+
+  {/* Mobile Menu Overlay */}
+  <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-xl pt-20 px-6">
+    <nav class="flex flex-col space-y-6 text-center">
+      {navItems.map((item) => (
+        <a 
+          href={item.href} 
+          class="text-xl font-medium text-slate-300 hover:text-white hover:text-primary transition-colors mobile-link"
+        >
+          {item.name}
+        </a>
+      ))}
+      <div class="pt-6 border-t border-slate-800 flex justify-center">
+        <a href={nextLangPath} class="flex items-center gap-2 text-lg font-medium text-slate-300 hover:text-white hover:text-primary transition-colors border border-slate-700 rounded-md px-4 py-2">
+          <Globe size={18} />
+          {lang === 'en' ? 'Español' : 'English'}
+        </a>
+      </div>
+    </nav>
+  </div>
 </header>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      
+      // Optional: Prevent scrolling when menu is open
+      if (!mobileMenu.classList.contains('hidden')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close menu when clicking a link
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>

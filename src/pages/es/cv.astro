@@ -7,45 +7,45 @@ const personalInfo = {
   role: "Python Developer",
   email: "jahazielvazquez19@gmail.com",
   phone: "+52 276 101 65 09",
-  location: "Mexico",
+  location: "México",
   linkedin: "linkedin.com/in/jahaziel-vazquez",
   github: "github.com/Jahaziel-19",
   website: "jahaziel.is-a.dev"
 };
 
-const summary = "Specialized in backend development with Django, Flask, and PostgreSQL. I create robust and scalable solutions for the modern web, with experience in building RESTful APIs and full-stack applications.";
+const summary = "Especializado en desarrollo backend con Django, Flask y PostgreSQL. Creo soluciones robustas y escalables para la web moderna, con experiencia en la construcción de APIs RESTful y aplicaciones full-stack.";
 
 const skills = [
   { category: "Backend", items: ["Django", "Flask", "FastAPI", "RESTful APIs", "Python 3+"] },
   { category: "Frontend", items: ["JavaScript (ES6+)", "TypeScript", "React", "HTML5", "CSS3", "Tailwind CSS"] },
-  { category: "Database", items: ["PostgreSQL", "MySQL", "SQLite", "SQLAlchemy", "Django ORM", "Mongo DB"] },
-  { category: "Tools", items: ["Git", "GitHub", "Linux", "VS Code", "Postman", "Docker"] },
+  { category: "Base de Datos", items: ["PostgreSQL", "MySQL", "SQLite", "SQLAlchemy", "Django ORM", "Mongo DB"] },
+  { category: "Herramientas", items: ["Git", "GitHub", "Linux", "VS Code", "Postman", "Docker"] },
 ];
 
 const projects = [
   {
-    title: "Mercadito - School Ecommerce System",
+    title: "Mercadito - Sistema Ecommerce Escolar",
     role: "Full Stack Developer",
-    description: "Robust backend for a school e-commerce platform. Implementation of secure authentication, inventory management, order tracking, and email notification system.",
+    description: "Backend robusto para plataforma de comercio electrónico escolar. Implementación de autenticación segura, gestión de inventario, seguimiento de pedidos y sistema de notificaciones por correo.",
     tech: ["Flask", "SQLAlchemy", "Flask-Mail", "Python"]
   },
   {
-    title: "SIGES - Integral School Management System",
+    title: "SIGES - Sistema Integral de Gestión Escolar",
     role: "Full Stack Developer",
-    description: "Complete system for managing procedures, student registration, and academic processes such as admissions. Developed with MVT architecture.",
+    description: "Sistema completo para la gestión de trámites, registro de alumnos y procesos académicos como admisión. Desarrollado con arquitectura MVT.",
     tech: ["Django", "PostgreSQL", "Bootstrap", "JavaScript"]
   },
   {
-    title: "Contacts App",
+    title: "Aplicación de Contactos",
     role: "Backend Developer",
-    description: "CRUD application for contact management with secure authentication and data export functionalities.",
+    description: "Aplicación CRUD para gestión de contactos con autenticación segura y funcionalidades de exportación de datos.",
     tech: ["React", "Flask", "Mongo DB", "JWT"]
   }
 ];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -63,13 +63,13 @@ const projects = [
 
     <!-- Toolbar -->
     <div class="no-print fixed top-0 left-0 w-full bg-slate-900 text-white p-4 shadow-lg z-50 flex justify-between items-center">
-        <a href="/" class="flex items-center gap-2 hover:text-primary transition-colors text-sm font-medium">
+        <a href="/es" class="flex items-center gap-2 hover:text-primary transition-colors text-sm font-medium">
             <ArrowLeft size={18} />
-            Back to Portfolio
+            Volver al Portafolio
         </a>
         <button onclick="window.print()" class="flex items-center gap-2 bg-primary hover:bg-blue-600 px-4 py-2 rounded-lg transition-colors font-medium text-sm shadow-lg shadow-blue-500/20">
             <Printer size={18} />
-            Print / Save PDF
+            Imprimir / Guardar PDF
         </button>
     </div>
 
@@ -111,7 +111,7 @@ const projects = [
 
         <!-- Summary -->
         <section class="mb-8">
-            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-3">Professional Profile</h3>
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-3">Perfil Profesional</h3>
             <p class="text-slate-700 leading-relaxed text-justify">
                 {summary}
             </p>
@@ -119,7 +119,7 @@ const projects = [
 
         <!-- Skills -->
         <section class="mb-8">
-            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-4">Technical Skills</h3>
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-4">Habilidades Técnicas</h3>
             <div class="grid grid-cols-2 gap-4">
                 {skills.map(group => (
                     <div>
@@ -134,7 +134,7 @@ const projects = [
 
         <!-- Experience / Projects -->
         <section class="mb-8">
-            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-6">Featured Projects</h3>
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-6">Proyectos Destacados</h3>
             
             <div class="space-y-6">
                 {projects.map(project => (

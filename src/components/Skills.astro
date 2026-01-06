@@ -1,5 +1,9 @@
 ---
 import { Database, Server, Code, Terminal } from 'lucide-react';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const skills = [
   {
@@ -28,10 +32,10 @@ const skills = [
 <section id="skills" class="py-20 bg-slate-800/50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Habilidades Técnicas</h2>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{t('skills.title')}</h2>
       <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
       <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
-        Mi stack tecnológico principal se centra en el ecosistema Python, complementado con herramientas modernas de desarrollo web.
+        {t('skills.description')}
       </p>
     </div>
 

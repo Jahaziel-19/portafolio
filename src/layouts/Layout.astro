@@ -4,13 +4,14 @@ import '@fontsource/inter';
 interface Props {
 	title: string;
     description?: string;
+    lang?: string;
 }
 
-const { title, description = "Portafolio de Jesús Jahaziel Sánchez Vázquez - Python Developer" } = Astro.props;
+const { title, description = "Portafolio de Jesús Jahaziel Sánchez Vázquez - Python Developer", lang = "en" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
