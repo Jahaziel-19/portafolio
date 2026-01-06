@@ -3,43 +3,67 @@ import '@fontsource/inter';
 import { Mail, MapPin, Phone, Github, Linkedin, Globe, Printer, ArrowLeft } from 'lucide-react';
 
 const personalInfo = {
-  name: "Jesús Jahaziel Sánchez Vázquez",
-  role: "Python Developer",
+  name: "JESÚS JAHAZIEL SÁNCHEZ VÁZQUEZ",
+  role: "Fullstack Developer",
   email: "jahazielvazquez19@gmail.com",
   phone: "+52 276 101 65 09",
-  location: "Mexico",
+  location: "México",
   linkedin: "linkedin.com/in/jahaziel-vazquez",
   github: "github.com/Jahaziel-19",
   website: "jahaziel.is-a.dev"
 };
 
-const summary = "Specialized in backend development with Django, Flask, and PostgreSQL. I create robust and scalable solutions for the modern web, with experience in building RESTful APIs and full-stack applications.";
+const summary = "Specializing in backend development with Django, Flask, and PostgreSQL, I create robust and scalable solutions for the modern web. Experienced in building RESTful APIs and full-stack applications, my focus is on delivering high-quality, efficient software.";
 
 const skills = [
   { category: "Backend", items: ["Django", "Flask", "FastAPI", "RESTful APIs", "Python 3+"] },
-  { category: "Frontend", items: ["JavaScript (ES6+)", "TypeScript", "React", "HTML5", "CSS3", "Tailwind CSS"] },
-  { category: "Database", items: ["PostgreSQL", "MySQL", "SQLite", "SQLAlchemy", "Django ORM", "Mongo DB"] },
-  { category: "Tools", items: ["Git", "GitHub", "Linux", "VS Code", "Postman", "Docker"] },
+  { category: "Frontend", items: ["JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS"] },
+  { category: "Databases", items: ["PostgreSQL", "MySQL", "SQLite", "SQLAlchemy", "Django ORM", "Mongo DB"] },
+  { category: "Tools", items: ["Git", "GitHub", "Linux", "VS Code", "Postman"] },
 ];
 
 const projects = [
   {
     title: "Mercadito - School Ecommerce System",
     role: "Full Stack Developer",
-    description: "Robust backend for a school e-commerce platform. Implementation of secure authentication, inventory management, order tracking, and email notification system.",
+    points: [
+      "Engineered a robust backend for a school e-commerce platform using Flask and SQLAlchemy.",
+      "Implemented secure authentication, inventory management, order tracking, and an email notification system.",
+      "Utilized Python and Flask-Mail to ensure seamless communication within the platform."
+    ],
     tech: ["Flask", "SQLAlchemy", "Flask-Mail", "Python"]
   },
   {
     title: "SIGES - Integral School Management System",
     role: "Full Stack Developer",
-    description: "Complete system for managing procedures, student registration, and academic processes such as admissions. Developed with MVT architecture.",
+    points: [
+      "Developed a comprehensive system for academic processes, student registration, and admissions using an MVT architecture.",
+      "Integrated Django, PostgreSQL, Bootstrap, and JavaScript to manage complex administrative workflows."
+    ],
     tech: ["Django", "PostgreSQL", "Bootstrap", "JavaScript"]
   },
   {
-    title: "Contacts App",
+    title: "Contact Application",
     role: "Backend Developer",
-    description: "CRUD application for contact management with secure authentication and data export functionalities.",
+    points: [
+      "Built a secure CRUD application for contact management with robust authentication and data export functionalities.",
+      "Leveraged React, Flask, Mongo DB, and JWT for a full-stack solution."
+    ],
     tech: ["React", "Flask", "Mongo DB", "JWT"]
+  }
+];
+
+const education = [
+  {
+    degree: "Associate of Applied Science (TSU Equivalent) in Software Development",
+    status: "Completed",
+    institution: "Universidad Tecnológica de Oriental, México"
+  },
+  {
+    degree: "Bachelor of Science in Engineering",
+    status: "In Progress",
+    institution: "Universidad Tecnológica de Oriental, México",
+    note: "Expected Graduation: 2027"
   }
 ];
 ---
@@ -52,10 +76,31 @@ const projects = [
     <title>CV - {personalInfo.name}</title>
     <style>
         @media print {
-            @page { margin: 0; size: auto; }
-            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white; }
+            @page { margin: 0.5cm; size: auto; }
+            body { 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
+                background: white; 
+                font-size: 9pt;
+            }
             .no-print { display: none !important; }
             a { text-decoration: none; color: black; }
+            main {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            /* Compact spacing for print */
+            h1 { font-size: 22pt !important; margin-bottom: 2px !important; }
+            h2 { font-size: 12pt !important; margin-bottom: 8px !important; }
+            h3 { font-size: 11pt !important; margin-top: 10px !important; margin-bottom: 4px !important; border-bottom: 1px solid #e2e8f0; }
+            section { margin-bottom: 8px !important; }
+            p, li { line-height: 1.3 !important; }
+            
+            /* Avoid breaking elements across pages */
+            .break-avoid { break-inside: avoid; page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -77,11 +122,11 @@ const projects = [
     <main class="bg-white w-full max-w-[210mm] min-h-[297mm] p-[15mm] md:p-[20mm] my-0 md:my-8 shadow-xl md:rounded-sm mx-auto relative mt-20 md:mt-24">
         
         <!-- Header -->
-        <header class="border-b-2 border-slate-100 pb-8 mb-8">
-            <h1 class="text-4xl font-bold text-slate-900 uppercase tracking-tight mb-2">{personalInfo.name}</h1>
-            <h2 class="text-xl text-primary font-medium mb-6">{personalInfo.role}</h2>
+        <header class="border-b-2 border-slate-100 pb-8 mb-8 print:pb-4 print:mb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 uppercase tracking-tight mb-2">{personalInfo.name}</h1>
+            <h2 class="text-xl text-primary font-medium mb-6 print:mb-4">{personalInfo.role}</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-8 text-sm text-slate-600">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-8 text-sm text-slate-600 print:grid-cols-3 print:gap-y-1 print:text-xs">
                 <div class="flex items-center gap-2">
                     <Mail size={16} className="text-slate-400" />
                     <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
@@ -100,29 +145,29 @@ const projects = [
                 </div>
                 <div class="flex items-center gap-2">
                     <Linkedin size={16} className="text-slate-400" />
-                    <a href={`https://${personalInfo.linkedin}`} target="_blank">{personalInfo.linkedin}</a>
+                    <a href={`https://${personalInfo.linkedin}`} target="_blank">linkedin.com/in/jahaziel-vazquez</a>
                 </div>
                 <div class="flex items-center gap-2">
                     <Github size={16} className="text-slate-400" />
-                    <a href={`https://${personalInfo.github}`} target="_blank">{personalInfo.github}</a>
+                    <a href={`https://${personalInfo.github}`} target="_blank">github.com/Jahaziel-19</a>
                 </div>
             </div>
         </header>
 
         <!-- Summary -->
-        <section class="mb-8">
-            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-3">Professional Profile</h3>
+        <section class="mb-8 print:mb-4 break-avoid">
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-3">Professional Summary</h3>
             <p class="text-slate-700 leading-relaxed text-justify">
                 {summary}
             </p>
         </section>
 
         <!-- Skills -->
-        <section class="mb-8">
-            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-4">Technical Skills</h3>
-            <div class="grid grid-cols-2 gap-4">
+        <section class="mb-8 print:mb-4 break-avoid">
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-4 print:mb-2">Technical Skills</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 print:grid-cols-2 print:gap-2">
                 {skills.map(group => (
-                    <div>
+                    <div class="break-avoid">
                         <h4 class="font-semibold text-slate-800 mb-1 text-sm">{group.category}</h4>
                         <p class="text-sm text-slate-600 leading-relaxed">
                             {group.items.join(", ")}
@@ -133,17 +178,21 @@ const projects = [
         </section>
 
         <!-- Experience / Projects -->
-        <section class="mb-8">
-            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-6">Featured Projects</h3>
+        <section class="mb-8 print:mb-4">
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-6 print:mb-3">Featured Projects</h3>
             
-            <div class="space-y-6">
+            <div class="space-y-6 print:space-y-4">
                 {projects.map(project => (
-                    <div>
-                        <div class="flex justify-between items-baseline mb-1">
+                    <div class="break-avoid">
+                        <div class="flex justify-between items-baseline mb-2 print:mb-1">
                             <h4 class="font-bold text-slate-900 text-lg">{project.title}</h4>
-                            <span class="text-xs font-medium text-white bg-slate-800 px-2 py-0.5 rounded">{project.role}</span>
+                            <span class="text-xs font-medium text-white bg-slate-800 px-2 py-0.5 rounded print:text-black print:bg-transparent print:border print:border-slate-400">{project.role}</span>
                         </div>
-                        <p class="text-slate-700 text-sm mb-2 text-justify">{project.description}</p>
+                        <ul class="list-disc list-outside ml-5 text-slate-700 text-sm mb-3 space-y-1 print:mb-2">
+                            {project.points.map(point => (
+                                <li class="text-justify pl-1">{point}</li>
+                            ))}
+                        </ul>
                         <div class="flex flex-wrap gap-2">
                             {project.tech.map(t => (
                                 <span class="text-xs text-slate-500 border border-slate-200 px-1.5 py-0.5 rounded bg-slate-50">
@@ -151,6 +200,23 @@ const projects = [
                                 </span>
                             ))}
                         </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="mb-8 print:mb-0 break-avoid">
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1 mb-4 print:mb-2">Education</h3>
+            <div class="space-y-4 print:space-y-2">
+                {education.map(edu => (
+                    <div class="break-avoid">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-bold text-slate-900 text-base">{edu.degree}</h4>
+                            <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded whitespace-nowrap ml-2 print:bg-transparent print:border print:border-slate-200">{edu.status}</span>
+                        </div>
+                        <p class="text-sm text-slate-700 font-medium">{edu.institution}</p>
+                        {edu.note && <p class="text-xs text-slate-500 mt-1">{edu.note}</p>}
                     </div>
                 ))}
             </div>
