@@ -33,6 +33,14 @@ export const projects = {
   ],
   es: [
     {
+      id: "gpi",
+      title: "GPI Descubre | Reseñas de Cafeterías",
+      imageFolder: "gpi",
+      description: "Aplicación web para reseñas de cafeterías. Permite a los usuarios registrarse, iniciar sesión, publicar reseñas y ver reseñas de otras cafeterías.",
+      tags: ["Django", "PostgreSQL", "Astro"],
+      demo: "https://gpi-descubre.vercel.app/"
+    },
+    {
       id: "Mercadito",
       title: "Sistema ecommerce escolar",
       imageFolder: "ecommerce-api",
