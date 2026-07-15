@@ -2,6 +2,15 @@
 export const projects = {
   en: [
     {
+      id: "gpi",
+      title: "GPI Descubre | Reseñas de Cafeterías",
+      imageFolder: "gpi",
+      description: "A web application for reviewing and sharing coffee shop ratings. Utilizes Django for the backend and React for the frontend.",
+      tags: ["Django", "React", "Astro"],
+      github: "https://github.com/Jahaziel-19/gpi-descubre",
+      demo: "https://gpi-descubre.vercel.app/",
+    },
+    {
       id: "Mercadito",
       title: "School Ecommerce System",
       imageFolder: "ecommerce-api",
@@ -51,7 +60,7 @@ export const projects = {
     },
     {
       id: "inventario",
-      title: "Sistema de inventventario",
+      title: "Sistema de inventario",
       imageFolder: "inventario",
       description: "Sistema de inventario para la gestión de stock de productos en una universidad.",
       tags: ["Django", "PostgreSQL", "REST", "React"],
