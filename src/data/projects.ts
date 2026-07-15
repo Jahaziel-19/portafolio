@@ -12,6 +12,15 @@ export const projects = {
       video: "https://drive.google.com/file/d/1UodBlDYI0uUw8r58qPB7PPYVKXeeBt39/view?usp=sharing",
     },
     {
+      id: "inventario",
+      title: "Inventory System",
+      imageFolder: "inventario",
+      description: "Inventory management system for a university. Includes features for product tracking, stock management, and user access control.",
+      tags: ["Django", "PostgreSQL", "REST", "React"],
+      github: "https://github.com/Jahaziel-19/Inventario-Universitario",
+      demo: "#",
+         },
+    {
       id: "contactos",
       title: "Contacts App",
       imageFolder: "contactos",
@@ -40,6 +49,15 @@ export const projects = {
       tags: ["Django", "PostgreSQL", "Astro"],
       demo: "https://gpi-descubre.vercel.app/"
     },
+    {
+      id: "inventario",
+      title: "Sistema de inventventario",
+      imageFolder: "inventario",
+      description: "Sistema de inventario para la gestión de stock de productos en una universidad.",
+      tags: ["Django", "PostgreSQL", "REST", "React"],
+      github: "https://github.com/Jahaziel-19/Inventario-Universitario",
+      demo: "#",
+         },
     {
       id: "Mercadito",
       title: "Sistema ecommerce escolar",
